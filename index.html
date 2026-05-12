@@ -3,30 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>नमस्ते वीडियो ट्यूब - पार्टनर प्रोग्राम</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>नमस्ते वीडियो ट्यूब</h1>
-        <p>रॉबर्ट्सगंज से छोटे क्रिएटर्स के लिए</p>
-    </header>
+    <title>नमस्ते वीडियो ट्यूब - हम बनाएँ आपके कल को बेहतर</title>
+    
+    <meta property="og:title" content="नमस्ते वीडियो ट्यूब - पार्टनर बनें">
+    <meta property="og:description" content="अपना टैलेंट दिखाएं और कमाएं। नमस्ते पार्टनर प्रोग्राम से जुड़ें।">
+    <meta name="theme-color" content="#FF9933">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🙏</text></svg>">
 
-    <main>
-        <section id="registration-form">
-            <h2>पार्टनर प्रोग्राम रजिस्ट्रेशन</h2>
-            <form id="partnerForm">
-                <input type="text" id="name" placeholder="आपका पूरा नाम" required>
-                <input type="email" id="email" placeholder="ईमेल पता" required>
-                <input type="text" id="channelName" placeholder="यूट्यूब चैनल का नाम" required>
-                <input type="url" id="videoLink" placeholder="वीडियो लिंक (URL)" required>
-                <button type="submit">सबमिट करें</button>
-            </form>
-            <p id="message"></p>
-        </section>
-    </main>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://www.google.com/recaptcha/api.js?render=6Lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"></script>
+    
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+      import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    <script type="module" src="script.js"></script>
-</body>
-</html>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDdfbCOYeu1OePrW9TLKnkofD-O7sQyYQA",
+        authDomain: "namaste-tube.firebaseapp.com",
+        projectId: "namaste-tube",
+        storageBucket: "namaste-tube.firebasestorage.app",
+        messagingSenderId: "992165423858",
+        appId: "1:992165423858:web:c041d03a474d3fc665fe6b",
+        measurementId: "G-JDXL7E3XQD"
+      };
 
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      
+      const RECAPTCHA_SITE_KEY = "6Lxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+
+      window.applyNPP = async function() {
+          const name = document.getElementById('creatorName').value.trim();
+          const email = document.getElementById('creatorEmail').value.trim();
+          const phone = document.getElementById('creatorPhone').value.trim();
+          const channel = document.getElementById('creatorChannel').value.trim();
+          const category = document.getElementById('creatorCategory').value;
+          const btn = document.getElementById('submitBtn');
+          const msgDiv = document.getElementById('formMessage');
+
+          if(name.length < 3) { showMessage("कृपया पूरा नाम डालें", "error"); return; }
+          if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showMessage("सही ईमेल डालें", "error"); return; }
+          if(phone && !/^[6-9]\d{9}$/.test(phone)) { showMessage("10 अंक का सही मोबाइल नंबर डालें", "error"); return; }
+          if(!category) { showMessage
+                         
